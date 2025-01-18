@@ -1,27 +1,33 @@
 import './App.css';
+import Home from "./pages/Home/Home";
+import { Route, Routes } from "react-router-dom";
+import pages from "./utils/pages";
+import Layout from "./layouts/Layout/Layout";
+import Menu from "./pages/Menu/Menu";
+import Orders from "./pages/Orders/Orders";
+import About from "./pages/About/About";
+import Login from "./pages/Login/Login";
+import Reservations from "./pages/Reservations/Reservations";
 
-function App() {
+const App = () => {
   return (
-    <>
-      <header>
-        <h1>Welcome to Little Lemon</h1>
-      </header>
-      <nav>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <main>
-        <p>This is the main content area.</p>
-      </main>
-      <footer>
-        <p>&copy; 2025 Little Lemon. All rights reserved.</p>
-      </footer>
-    </>
-
+    <div data-testid="app-component">
+      <Layout>
+        <Routes>
+          <Route path={pages.get("home").path} element={<Home />} />
+          <Route path={pages.get("about").path} element={<About />} />
+          <Route path={pages.get("menu").path} element={<Menu />} />
+          <Route
+            path={pages.get("reservations").path}
+            element={<Reservations />}
+          />
+          <Route path={pages.get("orders").path} element={<Orders />} />
+          <Route path={pages.get("login").path} element={<Login />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Layout>
+    </div>
   );
-}
+};
 
 export default App;
